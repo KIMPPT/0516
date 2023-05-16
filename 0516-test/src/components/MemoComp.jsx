@@ -1,20 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addmemo, changeheart, deletememo } from "../slice/memoSlice";
 import { addlikelist, deletelikelist } from "../slice/memoLikeSlice";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart as whiteHeart } from "@fortawesome/free-regular-svg-icons";
+import { faHeart as blackHeart } from "@fortawesome/free-solid-svg-icons";
 export default function MemoComp() {
   let memo = useSelector((state) => state.memo);
   let memolike = useSelector((state) => state.memolike);
   let dispatch = useDispatch();
   let [intext, setIntext] = useState("");
-  let [heart, setHeart] = useState(false);
   let date = new Date();
   let year = date.getFullYear();
   let month = date.getMonth() + 1;
   let day = date.getDate();
   let now = `${year}-${month}-${day}`;
+  /*
   console.log(memolike);
   console.log(memo);
+  */
+  useEffect(() => {
+    console.log(memolike);
+    console.log(memo);
+  }, [memo]);
   return (
     <div>
       <h1>메모장</h1>
@@ -25,7 +33,7 @@ export default function MemoComp() {
       />
       <button
         onClick={() => {
-          dispatch(addmemo({ text: intext, date: now, heart: heart }));
+          dispatch(addmemo({ text: intext, date: now, heart: false }));
           setIntext("");
         }}
       >
@@ -46,7 +54,11 @@ export default function MemoComp() {
                 : dispatch(deletelikelist(m.text));
             }}
           >
-            {m.heart ? "♥" : "♡"}
+            {m.heart ? (
+              <FontAwesomeIcon icon={blackHeart} />
+            ) : (
+              <FontAwesomeIcon icon={whiteHeart} />
+            )}
           </button>
           <button onClick={() => dispatch(deletememo(index))}>X</button>
         </div>
