@@ -49,6 +49,7 @@ export default function MemoComp() {
           <button
             onClick={() => {
               dispatch(changeheart(index));
+              //위의 changeheart로 값이 바뀌고 그다음에 삼항연산자로 들어가기 때문에 값을 헷갈리지 말것
               !m.heart
                 ? dispatch(
                     addlikelist({ text: m.text, date: now, heart: true })
