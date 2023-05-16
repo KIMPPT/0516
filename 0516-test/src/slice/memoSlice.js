@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 let date = new Date();
 let year = date.getFullYear();
-let month = date.getMonth();
-let day = date.getDay();
+let month = date.getMonth() + 1;
+let day = date.getDate();
 let now = `${year}-${month}-${day}`;
 let id = 2;
 export let memoSlice = createSlice({
@@ -27,8 +27,10 @@ export let memoSlice = createSlice({
     changeheart: (state, action) => {
       state.splice(action.payload, 1, {
         ...state[action.payload],
-        heart: !(state.heart),
+        heart: !state[action.payload].heart,
       });
+
+      //console.log(state[action.payload].heart);
     },
   },
 });
