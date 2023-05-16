@@ -58,14 +58,21 @@ export default function MemoComp() {
             }}
           >
             {m.heart ? (
-              <FontAwesomeIcon icon={blackHeart}style={{color:"#ff0000"}} beatFade />
+              <FontAwesomeIcon
+                icon={blackHeart}
+                style={{ color: "#ff0000" }}
+                beatFade
+              />
             ) : (
               <FontAwesomeIcon icon={whiteHeart} />
             )}
           </button>
-          <button 
-          className="deleteButton"
-          onClick={() => dispatch(deletememo(index))}>X</button>
+          <button
+            className="deleteButton"
+            onClick={() => dispatch(deletememo(index))}
+          >
+            X
+          </button>
         </div>
       ))}
     </div>
