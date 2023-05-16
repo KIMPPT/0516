@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addmemo, changeheart, deletememo } from "../slice/memoSlice";
-import { addlikememo, deletelikememo } from "../slice/memoLikeSlice";
+import { addlikelist, deletelikelist } from "../slice/memoLikeSlice";
 export default function MemoComp() {
   let memo = useSelector((state) => state.memo);
   let memolike = useSelector((state) => state.memolike);
@@ -14,6 +14,7 @@ export default function MemoComp() {
   let day = date.getDate();
   let now = `${year}-${month}-${day}`;
   console.log(memolike);
+  console.log(memo);
   return (
     <div>
       <h1>메모장</h1>
@@ -38,15 +39,11 @@ export default function MemoComp() {
           <button
             onClick={() => {
               dispatch(changeheart(index));
-              memo[index].heart === false
+              !m.heart
                 ? dispatch(
-                    addlikememo({
-                      text: memo[index].text,
-                      date: now,
-                      heart: memo[index].heart,
-                    })
+                    addlikelist({ text: m.text, date: now, heart: true })
                   )
-                : dispatch(deletelikememo(index));
+                : dispatch(deletelikelist(m.text));
             }}
           >
             {m.heart ? "♥" : "♡"}

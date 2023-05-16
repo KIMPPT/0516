@@ -1,21 +1,22 @@
 import { createSlice } from "@reduxjs/toolkit";
-let id = 2;
+let likeid = 1;
 export let memoLikeSlice = createSlice({
   name: "memoLike",
-  initialState: [{}],
+  initialState: [],
   reducers: {
-    addlikememo: (state, action) => {
-      let newAdd = {
+    addlikelist: (state, action) => {
+      let newlikelist = {
         ...action.payload,
-        id: id,
+        likeid: likeid,
       };
-      id++;
-      state.push(newAdd);
+      likeid++;
+      state.push(newlikelist);
     },
-    deletelikememo: (state, action) => {
-      state.splice(action.payload, 1);
+    deletelikelist: (state, action) => {
+      let newlikelist = state.filter((m) => m.text !== action.payload);
+      return newlikelist;
     },
   },
 });
-export let { addlikememo, deletelikememo } = memoLikeSlice.actions;
+export let { addlikelist, deletelikelist } = memoLikeSlice.actions;
 export default memoLikeSlice.reducer;
