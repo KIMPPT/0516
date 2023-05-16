@@ -30,12 +30,14 @@ export default function MemoComp() {
         type="text"
         onChange={(e) => setIntext(e.target.value)}
         value={intext}
+        className="inputText"
       />
       <button
         onClick={() => {
           dispatch(addmemo({ text: intext, date: now, heart: false }));
           setIntext("");
         }}
+        className="addButton"
       >
         추가
       </button>
@@ -55,12 +57,14 @@ export default function MemoComp() {
             }}
           >
             {m.heart ? (
-              <FontAwesomeIcon icon={blackHeart} />
+              <FontAwesomeIcon icon={blackHeart}style={{color:"#ff0000"}} beatFade />
             ) : (
               <FontAwesomeIcon icon={whiteHeart} />
             )}
           </button>
-          <button onClick={() => dispatch(deletememo(index))}>X</button>
+          <button 
+          className="deleteButton"
+          onClick={() => dispatch(deletememo(index))}>X</button>
         </div>
       ))}
     </div>
