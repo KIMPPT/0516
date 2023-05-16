@@ -18,7 +18,7 @@ export default function MemoComp() {
       <input type="text" onChange={(e) => setIntext(e.target.value)} value={intext}/>
       <button
         onClick={() => {
-          dispatch(addmemo({ text: intext,date:now }));
+          dispatch(addmemo({ text: intext,date:now ,heart:heart}));
           setIntext("")
         }
       }
@@ -31,7 +31,9 @@ export default function MemoComp() {
           <h3>{m.text}</h3>
           <span>{m.date}</span>
           <button
-          onClick={()=>!(m.heart)}>{m.heart?"1":"-1"}</button>
+          onClick={()=>{
+          dispatch(changeheart(index))}
+          }>{m.heart?"1":"-1"}</button>
           <button
           onClick={()=>dispatch(deletememo(index))}>X</button>
         </div>
