@@ -69,7 +69,10 @@ export default function MemoComp() {
           </button>
           <button
             className="deleteButton"
-            onClick={() => dispatch(deletememo(index))}
+            onClick={() => {
+              dispatch(deletememo(index));
+              dispatch(deletelikelist(m.text));
+            }}
           >
             X
           </button>
