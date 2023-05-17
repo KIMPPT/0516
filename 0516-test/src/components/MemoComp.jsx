@@ -78,6 +78,14 @@ export default function MemoComp() {
           </button>
         </div>
       ))}
+      <hr />
+      <h3>즐겨찾기</h3>
+      {memolike.map((m)=>(
+        <div key={m.likeid}>
+          <h3>{m.text}</h3>
+          <span>{m.date}</span>
+        </div>
+      ))}
     </div>
   );
 }
